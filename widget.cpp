@@ -4,10 +4,7 @@
 
 using namespace std;
 
-Widget::Widget(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::Widget)
-{
+Widget::Widget(QWidget *parent) : QWidget(parent), ui(new Ui::Widget) {
     ui->setupUi(this);
     QHBoxLayout *layout = new QHBoxLayout(this);
     QSignalMapper* mapper = new QSignalMapper();
@@ -34,15 +31,27 @@ Widget::~Widget()
     delete ui;
 }
 
-void Widget::keyPressed(int) {
-
+void Widget::keyPressed(int i) {
+    if (i == magicNr) {
+        buttons[i]->setStyleSheet(" * { background-color: green }");
+        QMessageBox *mBox = new QMessageBox();
+        mBox->about(this, "Congrats!", "You picked the right number!");
+    } else if (i < magicNr) {
+        for (int j = 0; j <= i; j ++) {
+            buttons[j]->setStyleSheet(" * { background-color: red }");
+        }
+    } else {
+        for (int k = 9; k >= i; k --) {
+            buttons[k]->setStyleSheet(" * { background-color: red }");
+        }
+    }
 }
 
 void Widget::keyPressed(QString) {
     magicNr = rand() % 10;
 
-    for (QPushButton b : buttons) {
-        b.setEnabled(true);
-        b.setStyleSheet("* { background-color: white }");
+    for (int i = 0; i < 10; i ++) {
+        buttons[i]->setEnabled(true);
+        buttons[i]->setStyleSheet("* { background-color: white }");
     }
 }

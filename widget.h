@@ -23,7 +23,7 @@ private:
     int magicNr;
 
 public slots:
-    void keyPressed(int);
+    void keyPressed(int i);
     void keyPressed(QString);
 };
 
