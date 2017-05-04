@@ -24,6 +24,9 @@ Widget::Widget(QWidget *parent) : QWidget(parent), ui(new Ui::Widget) {
     connect(nyttSpill, SIGNAL(clicked()), mapper, SLOT(map()));
     layout->addWidget(nyttSpill);
 
+
+    connect(mapper, SIGNAL(mapped(int)), this, SLOT(keyPressed(int)));
+    connect(mapper, SIGNAL(mapped(QString)), this, SLOT(keyPressed(QString)));
 }
 
 Widget::~Widget()
