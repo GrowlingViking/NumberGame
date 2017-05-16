@@ -13,7 +13,7 @@ Widget::Widget(QWidget *parent) : QWidget(parent), ui(new Ui::Widget) {
     for (int i = 0; i < 10; i ++) {
         buttons[i] = new QPushButton(QString::number(i));
         mapper->setMapping(buttons[i], i);
-        //Setter dei til disabled ; check for om det funker
+        //Setter dei til disabled
         buttons[i]->setDisabled(true);
         connect(buttons[i], SIGNAL(clicked()), mapper, SLOT(map()));
         layout->addWidget(buttons[i]);
